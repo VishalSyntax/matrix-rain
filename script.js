@@ -19,10 +19,9 @@ var hue = -0.01;
 c.height = window.innerHeight;
 c.width = window.innerWidth;
 
-// Java code characters
-var javaChars = "public class static void main String int boolean if else for while try catch return new this super extends implements interface package import abstract final synchronized volatile transient native strictfp { } ( ) [ ] ; , . = + - * / % < > ! & | ^ ~ ? : ++ -- == != <= >= && || << >> >>> += -= *= /= %= &= |= ^= <<= >>= >>>= 0123456789 abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-// converting the string into an array of single characters
-var characters = javaChars.split("");
+// English alphabet and numbers
+var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+var characters = chars.split("");
 var font_size = 14;
 var columns = c.width/font_size;    // number of columns for the rain
 var gradient = ctx.createLinearGradient(0,10, 0,200);
@@ -38,7 +37,7 @@ function draw() {
     // Get the BG color based on the current time i.e. rgb(hh, mm, ss)
     // translucent BG to show trail
 
-    ctx.fillStyle = "rgba(0,0,0, 0.05)";
+    ctx.fillStyle = "rgba(0,0,0, 0.1)";
     ctx.fillRect(0, 0, c.width, c.height);
 
     ctx.fillStyle = "#BBB"; // grey text
@@ -47,10 +46,10 @@ function draw() {
     // looping over drops
     for (var i = 0; i < drops.length; i++)
     {
-        // background color
-        ctx.fillStyle = "rgba(10,10,10, 1)";
+        // background color - pure black for OLED
+        ctx.fillStyle = "rgba(0,0,0, 1)";
         ctx.fillRect(i * font_size, drops[i] * font_size,font_size,font_size);
-        // a random chinese character to print
+        // a random character to print
         var text = characters[Math.floor(Math.random() * characters.length)];
         // x = i * font_size, y = value of drops[i] * font_size
 
